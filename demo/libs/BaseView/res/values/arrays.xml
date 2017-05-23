@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="themes">
+		<item>Sky blue</item>
+		<item>Grey-blue</item>
+		<item>Brown-red</item>
+		<item>Orange-red</item>
+		<item>Red</item>
+		<item>Cyan</item>
+		<item>Green</item>
+		<item>Purple</item>
+	</string-array>
+
+</resources>

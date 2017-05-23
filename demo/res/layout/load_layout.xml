@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_white">
+    
+    
+	<RelativeLayout 
+        android:background="@drawable/brown_default_bottom" 
+        android:layout_width="fill_parent" 
+        android:layout_height="46.0dip">
+        <TextView 
+            android:textSize="25.0dip" 
+            android:textColor="#ffffffff" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:id="@+id/title"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+    
+    
+    
+    <LinearLayout 
+	    android:orientation="vertical" 
+	    android:layout_width="fill_parent" 
+	    android:layout_height="fill_parent" 
+	    android:gravity="center"
+	    android:id="@+id/wait">
+        <TextView 
+	    android:textSize="17.0sp" 
+	    android:textColor="#ffaaaaaa" 
+	    android:layout_width="wrap_content" 
+	    android:layout_height="wrap_content" 
+	    android:id="@+id/waitTextView"
+	    android:text="正在读取中，请稍后" />
+        
+        <ImageView
+    	android:id="@+id/loadAnimation"
+    	android:layout_marginTop="5dip"
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content"
+    	android:visibility="visible"
+    	android:background="@drawable/loading_gif"/> 
+        
+        <Button 
+        android:layout_marginTop="10dip"
+	    android:textSize="17.0sp" 
+	    android:textColor="#000000" 
+	    android:padding="1dip"
+	    android:layout_width="100.0dip"
+	    android:layout_height="wrap_content" 
+	    android:id="@+id/waitButton"
+	    android:visibility="gone"
+	    android:text="重试"
+	    android:background="@drawable/normal_button_style" />
+    </LinearLayout>
+</RelativeLayout>

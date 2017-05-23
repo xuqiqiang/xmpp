@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">XMPP</string>
+    <string name="server_name">tt.com</string>
+    <string name="server_ip">202.98.157.54</string>
+    <string name="server_altport">5223</string>
+    <string name="file_chat">chat</string>
+</resources>

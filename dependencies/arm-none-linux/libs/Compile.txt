@@ -1,0 +1,46 @@
+///////////////////
+交叉编译
+
+(创建/install/include)
+
+./configure \
+--host=arm-none-linux-gnueabi \
+CC=/home/arm/arm-2008q3/bin/arm-none-linux-gnueabi-gcc \
+--prefix=/home/xmpp/libs/arm/expat-2.0.0/install
+
+make 
+make install
+
+/*///////////////////
+软链接
+ln -s /lib/libgcc_s.so.1 libgcc_s.so
+
+查找
+find -name 'gcc_s.so'
+///////////////////*/
+
+
+生成libstrophe
+
+\./configure \
+--host=arm-none-linux-gnueabi \
+--prefix=/home/xmpp/libs/arm/libstrophe-master/install \
+CC=/home/arm/arm-2008q3/bin/arm-none-linux-gnueabi-gcc \
+CFLAGS=" -I ../expat-2.0.0/install/include/ -I./"
+
+修改Makefile
+LDFLAGS = -L ../expat-2.0.0/install/lib/
+CFLAGS = -g -Wall -I ../expat-2.0.0/install/include/
+SSL_LIBS = -lpthread# -lz 
+
+
+
+//执行
+
+
+/home/arm/arm-2008q3/bin/arm-none-linux-gnueabi-gcc -c basic.c -I ./include
+
+/home/arm/arm-2008q3/bin/arm-none-linux-gnueabi-gcc -o xmpp basic.o \
+-L ./libs -lstrophe -lexpat -lresolv -lpthread -ldl
+
+

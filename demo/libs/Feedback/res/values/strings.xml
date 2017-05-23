@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- ================ 反馈 ================ -->
+
+	<string name="feedback_from">&#160;Feedback from&#160;</string>
+	<string name="feedback_input">Enter feedback content</string>
+	<string name="feedback_input_too_much">Enter the number exceeds the limit</string>
+	<string name="feedback_submiting">Submitting ...</string>
+	<string name="feedback_content">Content:</string>
+	<string name="feedback_success">Thank you for your feedback, we will handle it as soon as possible!</string>
+	<string name="feedback_user">Enter the nickname/QQ/e-mail</string>
+	<string name="feedback_info">If you encounter any problems or improvements, please feedback to us, we will process and updates will be posted as soon as possible, thank you!</string>
+	<string name="feedback_submit">Submit</string>
+	
+	<string name="feedback_handle_crash">Sorry, the program is going to quit due to some exception. We will fix it soon.</string>
+</resources>

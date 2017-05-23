@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="help_set_theme">Themes</string>
+	<string name="help_set_prompt_theme_refresh">Effective immediately?</string>
+	
+	<!-- ================ 常用 ================ -->
+
+    <string name="input_empty">Enter null</string>
+    <string name="retry">Retry</string>
+    <string name="unknown">Unknown</string>
+    <string name="not_install_app">The specified application is not installed</string>
+    <string name="loading">Loading ...</string>
+    <string name="waiting">Just a moment please ...</string>
+    <string name="about">About</string>
+    <string name="share">Share</string>
+    <string name="score">Score</string>
+    <string name="prompt">Tips</string>
+    <string name="network_error">Network connection error</string>
+    <string name="network_disabled">Network unavailable</string>
+    <string name="prompt_os_version_low">Version on your system is too low</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="input_error">Input error</string>
+    <string name="prompt_api_low">Version on your system is too low, this feature is not available</string>
+    <!-- ================ 对话框 ================ -->
+
+    <string name="option">Options</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="back">Return</string>
+    <string name="other">Other</string>
+    <string name="send">Send</string>
+
+</resources>

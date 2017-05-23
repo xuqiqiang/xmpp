@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM3-rp-gYS">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="chat">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn_send_chat_message:" destination="2" eventType="touchUpInside" id="5gO-cR-Mf9"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vXi-la-3bf">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="p3W-gd-Lh3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="textbox:" destination="2" eventType="editingDidEndOnExit" id="qyC-8F-sUe"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eng-GS-7hQ">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="set status">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn_set_status:" destination="2" eventType="touchUpInside" id="Hpv-BZ-w1y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0GJ-ap-Erv">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="get friend list">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn_get_friend_list:" destination="2" eventType="touchUpInside" id="G0N-hf-Hj6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gal-HI-kRE">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="add friend">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn_add_friend:" destination="2" eventType="touchUpInside" id="4Ds-u9-xDD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtR-ip-tMO">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="delete friend">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn_delete_friend:" destination="2" eventType="touchUpInside" id="FN0-Jc-hro"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McH-Qv-JR7">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="send heartbeat">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn_send_heartbeat:" destination="2" eventType="touchUpInside" id="drE-eZ-ptI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hk1-1K-SzL">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="declare">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn_declare:" destination="2" eventType="touchUpInside" id="YG3-oS-BrK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NND-EE-Avk">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="stop">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn_stop:" destination="2" eventType="touchUpInside" id="ndf-2y-A39"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isO-2H-6aG">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="connect">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn_connet:" destination="2" eventType="touchUpInside" id="6wS-Aw-dna"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0GJ-ap-Erv" firstAttribute="top" secondItem="3" secondAttribute="top" constant="246" id="6wE-fo-VWL"/>
+                            <constraint firstItem="RM3-rp-gYS" firstAttribute="top" secondItem="eng-GS-7hQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="8I8-Qv-4hd"/>
+                            <constraint firstItem="NND-EE-Avk" firstAttribute="baseline" secondItem="0GJ-ap-Erv" secondAttribute="baseline" type="default" id="8wm-M9-MCD"/>
+                            <constraint firstItem="gal-HI-kRE" firstAttribute="top" secondItem="3" secondAttribute="top" constant="27" id="AGc-0s-7zo"/>
+                            <constraint firstAttribute="trailing" secondItem="gal-HI-kRE" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="D7o-8b-7g4"/>
+                            <constraint firstItem="McH-Qv-JR7" firstAttribute="centerX" secondItem="Hk1-1K-SzL" secondAttribute="centerX" type="default" id="Dm7-hT-qSD"/>
+                            <constraint firstItem="isO-2H-6aG" firstAttribute="top" secondItem="3" secondAttribute="top" constant="63" id="Hhx-Qn-gCk"/>
+                            <constraint firstItem="McH-Qv-JR7" firstAttribute="top" secondItem="dtR-ip-tMO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="IDG-7R-6I5"/>
+                            <constraint firstItem="vXi-la-3bf" firstAttribute="centerX" secondItem="RM3-rp-gYS" secondAttribute="centerX" type="default" id="LH2-qC-wAj"/>
+                            <constraint firstItem="Hk1-1K-SzL" firstAttribute="baseline" secondItem="RM3-rp-gYS" secondAttribute="baseline" type="default" id="QWi-YU-FH1"/>
+                            <constraint firstItem="NND-EE-Avk" firstAttribute="centerX" secondItem="gal-HI-kRE" secondAttribute="centerX" type="default" id="RdM-73-geB"/>
+                            <constraint firstItem="0GJ-ap-Erv" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="47" id="SBi-nb-vAr"/>
+                            <constraint firstItem="dtR-ip-tMO" firstAttribute="top" secondItem="3" secondAttribute="top" constant="83" id="Sr3-2a-vPm"/>
+                            <constraint firstAttribute="trailing" secondItem="dtR-ip-tMO" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="T83-Cu-998"/>
+                            <constraint firstItem="isO-2H-6aG" firstAttribute="leading" secondItem="eng-GS-7hQ" secondAttribute="leading" type="default" id="YZO-oq-VrV"/>
+                            <constraint firstItem="vXi-la-3bf" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="54" id="eEp-wz-3kL"/>
+                            <constraint firstItem="0GJ-ap-Erv" firstAttribute="centerX" secondItem="eng-GS-7hQ" secondAttribute="centerX" type="default" id="gU5-by-HRZ"/>
+                            <constraint firstItem="vXi-la-3bf" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="h1r-HT-dJc"/>
+                            <constraint firstItem="Hk1-1K-SzL" firstAttribute="leading" secondItem="gal-HI-kRE" secondAttribute="leading" type="default" id="xSG-BK-KgU"/>
+                            <constraint firstItem="eng-GS-7hQ" firstAttribute="baseline" secondItem="McH-Qv-JR7" secondAttribute="baseline" type="default" id="xp5-G1-NwQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textbox" destination="vXi-la-3bf" id="Ahn-na-AT7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btn_add_friend:"/>
+                <relationship kind="action" name="btn_connet:"/>
+                <relationship kind="action" name="btn_declare:"/>
+                <relationship kind="action" name="btn_delete_friend:"/>
+                <relationship kind="action" name="btn_get_friend_list:"/>
+                <relationship kind="action" name="btn_send_chat_message:"/>
+                <relationship kind="action" name="btn_send_heartbeat:"/>
+                <relationship kind="action" name="btn_set_status:"/>
+                <relationship kind="action" name="btn_stop:"/>
+                <relationship kind="action" name="textbox:"/>
+                <relationship kind="outlet" name="textbox" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

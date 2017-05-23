@@ -1,0 +1,35 @@
+
+
+./configure --prefix=/home/xmpp/libs/linux/expat-2.0.0/install
+
+
+
+./configure --prefix=/home/xmpp/libs/linux/json-c/install
+
+
+
+
+\./configure \
+--prefix=/home/xmpp/libs/linux/libstrophe-master/install \
+CFLAGS=" -I ../expat-2.0.0/install/include/ -I ./"
+
+ÐÞ¸ÄMakefile
+LDFLAGS = -L ../expat-2.0.0/install/lib/
+CFLAGS = -g -Wall -I ../expat-2.0.0/install/include/
+SSL_LIBS = -lpthread 
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Ö´ÐÐ
+
+gcc -c Xmpp.c Friend_list.c XmppString.c XmppReceiver.c XmppSender.c XmppTest.c -I ./include
+
+gcc -o xmpp Xmpp.o Friend_list.o XmppString.o XmppReceiver.o XmppSender.o XmppTest.o \
+-L ./libs -lstrophe -lexpat -ljson-c -lresolv -lpthread -ldl
+
+
+
+
+valgrind --leak-check=full --show-reachable=yes ./xmpp

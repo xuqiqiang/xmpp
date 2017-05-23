@@ -1,0 +1,42 @@
+(创建/install/include)
+
+
+export NDK="/home/android_ndk/android-ndk-r8d"
+
+
+./configure \
+--host=arm \
+CC="$NDK/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-gcc --sysroot=$NDK/platforms/android-8/arch-arm" \
+--prefix=/home/xmpp/libs/android/expat-2.0.0/install
+
+
+
+
+
+./configure \
+--host=arm \
+CC="$NDK/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-gcc --sysroot=$NDK/platforms/android-8/arch-arm" \
+--prefix=/home/xmpp/libs/android/json-c/install
+
+
+
+生成libstrophe
+
+
+\./configure \
+--host=arm \
+CC="$NDK/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-gcc --sysroot=$NDK/platforms/android-8/arch-arm" \
+--prefix=/home/xmpp/libs/android/libstrophe-master/install \
+CFLAGS=" -I/home/xmpp/libs/android/expat-2.0.0/install/include/ -I ./"
+
+
+
+修改Makefile
+LDFLAGS = -L/home/xmpp/libs/android/expat-2.0.0/install/lib/
+CFLAGS = -g -Wall -I/home/xmpp/libs/android/expat-2.0.0/install/include/
+SSL_LIBS = #-lpthread
+
+
+
+
+$NDK/ndk-build

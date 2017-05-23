@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FF000000"
+        android:text="请输入用户名:"
+        android:textSize="17sp" />
+
+    <com.snailstdio.software.xsdk.view.CustomEditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        fab:fab_imeAction="imeActionNext" />
+    
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="#FF000000"
+        android:text="请输入密码:"
+        android:textSize="17sp" />
+
+    <com.snailstdio.software.xsdk.view.CustomEditText
+        android:id="@+id/password_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        fab:fab_isPassword="true"
+        fab:fab_imeAction="imeActionNext" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="#FF000000"
+        android:text="请再次输入密码:"
+        android:textSize="17sp" />
+    
+    <com.snailstdio.software.xsdk.view.CustomEditText
+        android:id="@+id/password_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        fab:fab_isPassword="true"
+        fab:fab_imeAction="imeActionGo" />
+
+</LinearLayout>
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    android:padding="5dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="20.0dip" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:textColor="#FF000000"
+        android:text="请输入用户名:" />
+    <EditText android:id="@+id/username" 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textColor="#FF000000"
+        android:text="" />
+    
+    <TextView android:textSize="20.0dip" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:textColor="#FF000000"
+        android:text="请输入密码:" />
+    <EditText android:id="@+id/password_1" 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:textColor="#FF000000"
+        android:text="" 
+        android:inputType="textPassword"/>
+    
+    <TextView android:textSize="20.0dip" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:textColor="#FF000000"
+        android:text="请再次输入密码:" />
+    <EditText android:id="@+id/password_2" 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:textColor="#FF000000"
+        android:text="" 
+        android:inputType="textPassword"/>
+    
+</LinearLayout> -->

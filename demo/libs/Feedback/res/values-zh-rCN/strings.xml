@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- ================ 反馈 ================ -->
+	<string name="feedback_from">反馈:来自</string>
+	<string name="feedback_input">请输入反馈内容</string>
+	<string name="feedback_input_too_much">输入字数超过限制</string>
+	<string name="feedback_submiting">正在提交...</string>
+	<string name="feedback_content">内容：</string>
+	<string name="feedback_success">感谢您的反馈，我们将尽快处理！</string>
+	<string name="feedback_user">请输入昵称/QQ/邮箱</string>
+	<string name="feedback_info">如果遇到什么问题或者有什么改进方案，请反馈给我们，我们会尽快处理并发布更新，非常感谢！</string>
+	<string name="feedback_submit">提交</string>
+	
+	<string name="feedback_handle_crash">很抱歉，程序出现异常即将退出，我们正在收集日志，并在下个版本中修复</string>
+</resources>

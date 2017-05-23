@@ -1,0 +1,57 @@
+
+
+./configure \
+--host=arm-apple-darwin \
+CC="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc" \
+CFLAGS="-arch armv7 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk" \
+--prefix=/Users/xuqiqiang/Documents/xmpp/libs/iphone/expat-2.0.0/install
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+修改Makefile
+LDFLAGS = -arch armv7 -arch arm64 -L ../expat-2.0.0/install/lib/
+CFLAGS = -g -Wall -arch armv7 -arch arm64 -I ../expat-2.0.0/install/include/ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk
+SSL_LIBS = -lpthread # -lz 
+
+
+\./configure \
+--host=arm-apple-darwin \
+CC="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc" \
+RANLIB=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib \
+--prefix=/Users/xuqiqiang/Documents/xmpp/libs/iphone/libstrophe-master/install \
+CFLAGS="-arch armv7 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk \
+-I ../expat-2.0.0/install/include/ -I./"
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -arch armv7 -arch arm64 -c xmpp.c Friend_list.c -I/Users/xuqiqiang/Documents/xmpp/libs/iphone/armv7/libstrophe-master/install/include -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk
+
+
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -arch armv7 -arch arm64 -o libxmpp.a xmpp.o Friend_list.o
+
+ar crv libxmpp.a xmpp.o Friend_list.o
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+libcurl
+
+\./configure \
+CC="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc -arch i386" \
+RANLIB=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/ranlib \
+CFLAGS="-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk" \
+--prefix=/Users/xuqiqiang/Documents/curl/curl-7.21.1/install
+
+
+ar crv libtest.a test.o

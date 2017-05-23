@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="help_set_theme">主題風格</string>
+	<string name="help_set_prompt_theme_refresh">是否立即生效?</string>
+
+	<!-- ================ 常用 ================ -->
+    <string name="input_empty">輸入為空</string>
+    <string name="retry">重試</string>
+    <string name="unknown">未知</string>
+    <string name="not_install_app">沒有安裝指定的應用</string>
+    <string name="loading">正在加載...</string>
+    <string name="waiting">請稍等...</string>
+    <string name="about">關於</string>
+    <string name="share">分享</string>
+    <string name="score">評分</string>
+    <string name="prompt">提示</string>
+    <string name="network_error">網絡連接錯誤</string>
+    <string name="network_disabled">網絡不可用</string>
+    <string name="prompt_os_version_low">您的系統版本過低</string>
+    <string name="unknown_error">未知錯誤</string>
+    <string name="input_error">輸入有誤</string>
+    <string name="prompt_api_low">您的系統版本太低，無法使用此功能</string>
+    <!-- ================ 對話框 ================ -->
+    <string name="option">選項</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="ok">確定</string>
+    <string name="cancel">取消</string>
+    <string name="back">返回</string>
+    <string name="other">其他</string>
+    <string name="send">發送</string>
+</resources>

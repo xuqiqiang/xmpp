@@ -1,0 +1,35 @@
+
+
+./configure \
+--host=i686-apple-darwin11 \
+CC="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc -arch i386" \
+CFLAGS="-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk" \
+--prefix=/Users/xuqiqiang/Documents/xmpp/libs/simulator/expat-2.0.0/install
+
+
+
+修改Makefile
+LDFLAGS = -L/Users/xuqiqiang/Documents/xmpp/libs/simulator/expat-2.0.0/install/lib/
+CFLAGS = -g -Wall -I/Users/xuqiqiang/Documents/xmpp/libs/simulator/expat-2.0.0/install/include/ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk
+SSL_LIBS = -lpthread # -lz 
+
+\./configure \
+BSD-generic32 \
+CC="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc -arch i386" \
+RANLIB=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/ranlib \
+--prefix=/Users/xuqiqiang/Documents/xmpp/libs/simulator/libstrophe-master/install \
+CFLAGS="-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk \
+-I/Users/xuqiqiang/Documents/xmpp/libs/simulator/expat-2.0.0/install/include/ -I./"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc -arch i386 -c xmpp.c Friend_list.c Ios_call_back.c -I/Users/xuqiqiang/Documents/xmpp/libs/simulator/libstrophe-master/install/include -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk
+
+
+ar crv libxmpp.a xmpp.o Friend_list.o Ios_call_back.o
+

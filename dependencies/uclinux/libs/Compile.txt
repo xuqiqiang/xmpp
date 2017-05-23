@@ -1,0 +1,46 @@
+///////////////////
+交叉编译
+
+(创建/install/include)
+
+
+./configure \
+--host=arm \
+CC=/home/uclinux/bin/csky-uclinux-gcc \
+AR=/home/uclinux/bin/csky-uclinux-ar \
+RANLIB=/home/uclinux/bin/csky-uclinux-ranlib \
+--prefix=/home/xmpp_library/uclinux/expat-2.0.0/install
+
+
+make 
+make install
+///////////////////*/
+
+
+生成libstrophe
+
+\./configure \
+--host=arm \
+--prefix=/home/xmpp_library/uclinux/libstrophe-master/install \
+CC="/home/uclinux/bin/csky-uclinux-gcc -DNO_PROTOTYPES=1 -mcpu=ck610 -Os -mlittle-endian -static  -Wa, -msoft-float  -g  -fschedule-insns -fschedule-insns2 -fno-strict-aliasing -fno-builtin -fomit-frame-pointer -frename-registers  -static -DCONFIG_CKCORE  -D__ckcore__ -Dlinux -D__linux__ -Dunix -D__uClinux__ -DEMBED  
+" \
+CFLAGS=" -I/home/xmpp_library/uclinux/expat-2.0.0/install/include/ \
+-I/home/xmpp_library/uclinux/openssl-0.9.8zb/install/include/"
+
+修改Makefile
+LDFLAGS = -L/home/xmpp_library/uclinux/expat-2.0.0/install/lib/
+CFLAGS = -g -Wall -I/home/xmpp_library/uclinux/expat-2.0.0/install/include/ 
+SSL_LIBS = -lpthread -ldl # -lz 
+
+
+
+/home/uclinux/bin/csky-uclinux-gcc -DNO_PROTOTYPES=1 -mcpu=ck610 -Os -mlittle-endian -static  -Wa, -msoft-float  -g  -fschedule-insns -fschedule-insns2 -fno-strict-aliasing -fno-builtin -fomit-frame-pointer -frename-registers  -static -DCONFIG_CKCORE  -D__ckcore__ -Dlinux -D__linux__ -Dunix -D__uClinux__ -DEMBED -c basic.c -I ./include/strophe
+
+/home/uclinux/bin/csky-uclinux-gcc -DNO_PROTOTYPES=1 -mcpu=ck610 -Os -mlittle-endian -static  -Wa, -msoft-float  -g  -fschedule-insns -fschedule-insns2 -fno-strict-aliasing -fno-builtin -fomit-frame-pointer -frename-registers  -static -DCONFIG_CKCORE  -D__ckcore__ -Dlinux -D__linux__ -Dunix -D__uClinux__ -DEMBED -o basic basic.o ./libs/libstrophe.a \
+./libs/libexpat.a -lresolv -lpthread
+
+
+
+/home/uclinux/bin/csky-uclinux-gcc -DNO_PROTOTYPES=1 -mcpu=ck610 -Os -mlittle-endian -static  -Wa, -msoft-float  -g  -fschedule-insns -fschedule-insns2 -fno-strict-aliasing -fno-builtin -fomit-frame-pointer -frename-registers  -static -DCONFIG_CKCORE  -D__ckcore__ -Dlinux -D__linux__ -Dunix -D__uClinux__ -DEMBED -c test.c
+
+/home/uclinux/bin/csky-uclinux-gcc -DNO_PROTOTYPES=1 -mcpu=ck610 -Os -mlittle-endian -static  -Wa, -msoft-float  -g  -fschedule-insns -fschedule-insns2 -fno-strict-aliasing -fno-builtin -fomit-frame-pointer -frename-registers  -static -DCONFIG_CKCORE  -D__ckcore__ -Dlinux -D__linux__ -Dunix -D__uClinux__ -DEMBED -o test123 test.o -Wl,-r -Wl,-T user.ld

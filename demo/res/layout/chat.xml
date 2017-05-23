@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg03"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="46.0dip"
+            android:background="@drawable/brown_default_bottom" >
+
+            <Button
+                android:id="@+id/btn_title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/mm_title_btn_back"
+                android:focusable="true"
+                android:gravity="center"
+                android:minWidth="70.0dip"
+                android:text="@string/back"
+                android:textColor="@color/btn_text_title" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="#ffffffff"
+                android:textSize="25.0dip" />
+
+            <ImageButton
+                android:id="@+id/btn_title_popmenu"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/mm_title_btn_right"
+                android:gravity="center"
+                android:minWidth="70.0dip"
+                android:src="@drawable/popmenu_btn_icon" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <ScrollView
+                android:id="@+id/scroll"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="true"
+                android:fillViewport="true" >
+
+                <LinearLayout
+                    android:id="@+id/layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dip"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="#FFFFFFFF"
+        android:padding="5dp"
+        android:orientation="horizontal" >
+
+        <com.snailstdio.software.xsdk.view.CustomEditText
+            android:id="@+id/send_message_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:textColor="#000000"
+            android:textSize="20.0sp"
+            fab:fab_imeAction="imeActionGo" />
+
+        <Button
+            android:id="@+id/send_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/normal_button_style"
+            android:padding="5dp"
+            android:text="发送"
+            android:textColor="#000000"
+            android:textSize="20.0sp" />
+    </LinearLayout>
+
+</LinearLayout>

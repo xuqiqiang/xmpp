@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="color_default_bg">#ffffffff</color>
+    <color name="bg_white">#FFFFFF</color>
+    <color name="bbutton_danger">#ffd9534f</color>
+    <color name="bbutton_danger_edge">#ffd43f3a</color>
+    <color name="bbutton_danger_pressed">#ffd2322d</color>
+    <color name="bbutton_danger_pressed_edge">#ffac2925</color>
+    <color name="bbutton_danger_disabled">#a5d9534f</color>
+    <color name="bbutton_danger_disabled_edge">#a5d43f3a</color>
+    <color name="bbutton_info">#ff5bc0de</color>
+    <color name="bbutton_info_edge">#ff46b8da</color>
+    <color name="bbutton_info_pressed">#ff39b3d7</color>
+    <color name="bbutton_info_pressed_edge">#ff269abc</color>
+    <color name="bbutton_info_disabled">#a55bc0de</color>
+    <color name="bbutton_info_disabled_edge">#a546b8da</color>
+    <color name="bbutton_extra">#ff14d870</color>
+    <color name="bbutton_extra_edge">#ff20d475</color>
+    <color name="bbutton_extra_pressed">#ff59d7b3</color>
+    <color name="bbutton_extra_pressed_edge">#ff26bc9a</color>
+    <color name="bbutton_extra_disabled">#a57bdec0</color>
+    <color name="bbutton_extra_disabled_edge">#a546dab8</color>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="grey">#ff58616d</color>
+    <color name="lightgrey">#ff888888</color>
+    <color name="transparent">#00000000</color>
+    <color name="half_transparent">#88000000</color>
+    <color name="button_bg_pressed">#33000000</color>
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="text_color_blue">#419DE4</color>
+    
+    <color name="toast_background_blue">#aa0077d9</color>
+    
+    <color name="xlistview_text_color_black">#ff323232</color>
+    
+    <!-- 描边颜色 -->
+    <color name="border_color">#ccc</color>
+    <color name="text_color_base">#333</color>
+    <color name="text_color_title">#666</color>
+    
+    <color name="base_title_bar_background">#177BE1</color>
+    <color name="handwriting_menu_background">#2585E5</color>
+    
+    <color name="custom_edittext_hint">#99323232</color>
+    <color name="custom_edittext_normal">#ff323232</color>
+    <color name="custom_edittext_light_gray_hint">#ff8d8d8d</color>
+    <color name="custom_textview_policy_url_color">#ff1b67de</color>
+    
+    <color name="note_edittext_cursor_color">#ffab8a72</color>
+    
+    <color name="note_edittext_line_color">#FFF0E9DC</color>
+    <color name="note_edittext_line_number_color">#FF808080</color>
+    <color name="note_edittext_line_number_rect_color">#FFE4E4E4</color>
+    
+    <color name="navigation_drawer_text_color_nomal">#636363</color>
+    
+    <!-- theme_blue -->
+    <color name="theme_blue">#0077d9</color>
+    <color name="systembar_blue">#0067c9</color>
+    <color name="theme_pressed_blue">#0057b9</color>
+    <color name="setting_menu_pressed_color_blue">#419DE4</color>
+    <color name="navigation_drawer_activated_background_color_blue">#00a7ff</color>
+    
+    <!-- theme_grey_blue -->
+    <color name="theme_grey_blue">#607d8b</color>
+    <color name="systembar_grey_blue">#506d7b</color>
+    <color name="theme_pressed_grey_blue">#405d6b</color>
+    <color name="setting_menu_pressed_color_grey_blue">#90adbb</color>
+    <color name="navigation_drawer_activated_background_color_grey_blue">#90adbb</color>
+    <color name="toast_background_grey_blue">#aa607d8b</color>
+    
+    <!-- theme_brown -->
+    <color name="theme_brown">#766358</color>
+    <color name="systembar_brown">#665348</color>
+    <color name="theme_pressed_brown">#564338</color>
+    <color name="setting_menu_pressed_color_brown">#a69388</color>
+    <color name="navigation_drawer_activated_background_color_brown">#a69388</color>
+    <color name="toast_background_brown">#aa766358</color>
+    
+    <!-- theme_orange -->
+    <color name="theme_orange">#ff7f50</color>
+    <color name="systembar_orange">#ef6f40</color>
+    <color name="theme_pressed_orange">#df5f30</color>
+    <color name="setting_menu_pressed_color_orange">#ffaf80</color>
+    <color name="navigation_drawer_activated_background_color_orange">#ffaf80</color>
+    <color name="toast_background_orange">#aaff7f50</color>
+    
+    <!-- theme_red -->
+    <color name="theme_red">#f44336</color>
+    <color name="systembar_red">#e43326</color>
+    <color name="theme_pressed_red">#d42316</color>
+    <color name="setting_menu_pressed_color_red">#f46356</color>
+    <color name="navigation_drawer_activated_background_color_red">#f46356</color>
+    <color name="toast_background_red">#aaf44336</color>
+    
+    <!-- theme_cyan -->
+    <color name="theme_cyan">#009688</color>
+    <color name="systembar_cyan">#008678</color>
+    <color name="theme_pressed_cyan">#007668</color>
+    <color name="setting_menu_pressed_color_cyan">#50c6b8</color>
+    <color name="navigation_drawer_activated_background_color_cyan">#50c6b8</color>
+    <color name="toast_background_cyan">#aa009688</color>
+    
+    <!-- theme_green -->
+    <color name="theme_green">#388e3c</color>
+    <color name="systembar_green">#287e2c</color>
+    <color name="theme_pressed_green">#186e1c</color>
+    <color name="setting_menu_pressed_color_green">#68be6c</color>
+    <color name="navigation_drawer_activated_background_color_green">#68be6c</color>
+    <color name="toast_background_green">#aa388e3c</color>
+    
+    <!-- theme_purple -->
+    <color name="theme_purple">#7b68ee</color>
+    <color name="systembar_purple">#6b58de</color>
+    <color name="theme_pressed_purple">#5b48ce</color>
+    <color name="setting_menu_pressed_color_purple">#ab98fe</color>
+    <color name="navigation_drawer_activated_background_color_purple">#ab98fe</color>
+    <color name="toast_background_purple">#aa7b68ee</color>
+</resources>
