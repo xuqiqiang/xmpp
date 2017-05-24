@@ -19,6 +19,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.snailstdio.software.xsdk.logger.Logger;
 import com.snailstdio.software.xsdk.utils.BitmapUtils;
 import com.snailstdio.software.xsdk.utils.Cache;
 import com.snailstdio.software.xsdk.utils.DisplayUtils;
@@ -224,52 +225,60 @@ public class Xmpp {
     }
 
     public static boolean handleVCardId(String data) {
+        Logger.d("handleVCardId");
+
+        String name = null;
+        String nick_name = null;
+        String photo = null;
+
         try {
             JSONObject json = new JSONObject(data);
-
-            String friend_name = json.getString("user_name");
-            String nick_name = json.getString("nick_name");
-            String photo = json.getString("photo_data");
-            if (friend_name.equals(Xmpp.user_name)) {
-                Xmpp.user_nick_name = nick_name;
-                if (!TextUtils.isEmpty(photo)) {
-                    Bitmap bitmap = Cache.getImageFromStr(photo);
-                    if (bitmap != null) {
-                        Xmpp.user_photo = BitmapUtils.getNewBitmap(bitmap,
-                                DisplayUtils.dip2px(context,
-                                        USER_PHOTO_SHOW_DIP));
-                    }
-
+            name = json.getString("user_name");
+            nick_name = json.getString("nick_name");
+            photo = json.getString("photo_data");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (TextUtils.isEmpty(name))
+            return false;
+        if (TextUtils.isEmpty(nick_name))
+            nick_name = name;
+        Logger.d("name:" + name);
+        if (TextUtils.equals(name, Xmpp.user_name)) {
+            Xmpp.user_nick_name = nick_name;
+            if (!TextUtils.isEmpty(photo)) {
+                Bitmap bitmap = Cache.getImageFromStr(photo);
+                if (bitmap != null) {
+                    Xmpp.user_photo = BitmapUtils.getNewBitmap(bitmap,
+                            DisplayUtils.dip2px(context, USER_PHOTO_SHOW_DIP));
                 }
-
-            } else {
-                if (Xmpp.friend_list == null)
-                    return false;
-
-                for (Friend friend : Xmpp.friend_list) {
-                    if (friend_name.equals(friend.name)) {// friend.jid.equals(friend_name)){
-                        if (!TextUtils.isEmpty(nick_name))
-                            friend.setNickname(nick_name);
-
-                        if (!TextUtils.isEmpty(photo)) {
-                            Bitmap bitmap = Cache.getImageFromStr(photo);
-                            if (bitmap != null) {
-                                friend.setPhoto(BitmapUtils.getNewBitmap(
-                                        bitmap, DisplayUtils.dip2px(context,
-                                                USER_PHOTO_SHOW_DIP)));
-                            }
-                        }
-                    }
-                }
-
-                return true;
 
             }
 
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } else {
+            if (Xmpp.friend_list == null)
+                return false;
+
+            for (Friend friend : Xmpp.friend_list) {
+                if (TextUtils.equals(name, friend.name)) {// friend.jid.equals(friend_name)){
+                    if (!TextUtils.isEmpty(nick_name))
+                        friend.setNickname(nick_name);
+
+                    if (!TextUtils.isEmpty(photo)) {
+                        Bitmap bitmap = Cache.getImageFromStr(photo);
+                        if (bitmap != null) {
+                            friend.setPhoto(BitmapUtils.getNewBitmap(bitmap,
+                                    DisplayUtils.dip2px(context,
+                                            USER_PHOTO_SHOW_DIP)));
+                        }
+                    }
+                }
+            }
+
+            return true;
+
         }
+
         return false;
     }
 

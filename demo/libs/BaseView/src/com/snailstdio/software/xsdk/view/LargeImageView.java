@@ -66,9 +66,6 @@ public class LargeImageView extends ImageView {
     }
 
     public void setImageBitmap1(final Bitmap bm) {
-        // Toast.makeText(this.getContext(), "large bitmap"+bm.getHeight(),
-        // 0).show();
-        // startAnimation(AnimationUtils.loadAnimation(cxt, R.anim.fade_in));
         Logger.d("getPaddingLeft" + this.getPaddingLeft());
 
         final int absBitmapWidth = bm.getWidth();

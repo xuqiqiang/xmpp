@@ -49,8 +49,7 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" >
+            android:layout_height="fill_parent" >
 
             <ScrollView
                 android:id="@+id/scroll"
@@ -65,7 +64,7 @@
                     android:id="@+id/layout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dip"
+                    android:padding="8dip"
                     android:layout_weight="1"
                     android:orientation="vertical" >
                 </LinearLayout>

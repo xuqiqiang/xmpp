@@ -39,6 +39,7 @@ import com.snailstdio.software.xsdk.utils.IntentUtils;
 import com.snailstdio.software.xsdk.view.CustomDialog;
 import com.snailstdio.software.xsdk.view.CustomEditText;
 import com.snailstdio.software.xsdk.view.PopMenu;
+import com.snailstdio.software.xsdk.view.ToastMaster;
 import com.snailstdio.software.xsdk.view.PopMenu.OnPopMenuItemClickListener;
 import com.xuqiqiang.xmpp.R;
 import com.xuqiqiang.xmpp.Xmpp;
@@ -247,7 +248,7 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
             public void run() {
 
                 try {
-
+                    Xmpp.user_nick_name = Xmpp.user_name;
                     Xmpp.getVCard(null);
                 } catch (Exception e) {
 
@@ -337,8 +338,7 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
                             }
                             if (which == 1) {
                                 Xmpp.requestGame(Xmpp.friend_list.get(position).name);
-                                Toast.makeText(XmppUI.this, "已发送请求",
-                                        Toast.LENGTH_LONG).show();
+                                ToastMaster.showToast(XmppUI.this, "已发送请求");
                             }
 
                             dialog.cancel();
@@ -364,7 +364,16 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
                         public void onClick(DialogInterface dialog,
                                 final int which) {
                             if (which == 0) {
-
+                                String message = "用户名 : "
+                                        + Xmpp.friend_list.get(position).name
+                                        + "\n昵称 : "
+                                        + Xmpp.friend_list.get(position).nickname
+                                        + "\n状态 : "
+                                        + Xmpp.friend_list.get(position).status;
+                                new CustomDialog.Builder(XmppUI.this)
+                                        .setTitle("好友信息").setMessage(message)
+                                        .setPositiveButton(R.string.ok, null)
+                                        .create().show();
                             }
                             if (which == 1) {
 
@@ -546,6 +555,7 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
                 if (data != null) {
                     Bitmap bitmap = BitmapUtils.getBitmapFromUri(this,
                             data.getData(), Xmpp.USER_PHOTO_WIDTH);
+                    Logger.d("Xmpp.user_nick_name:" + Xmpp.user_nick_name);
                     Xmpp.setVCard(Xmpp.user_nick_name,
                             Cache.bitmapToBase64(bitmap));
                 }
@@ -783,8 +793,7 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
                                 }
                                 Xmpp.addFriend(input);
 
-                                Toast.makeText(XmppUI.this, "已发送请求。",
-                                        Toast.LENGTH_LONG).show();
+                                ToastMaster.showToast(XmppUI.this, "已发送请求");
                                 dialog.cancel();
 
                             }
@@ -849,8 +858,6 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
     }
 
     private void refresh_friends_list() {
-        String str = null;
-        str.length();
         if (scene != SCENE_CONMPLETE)
             return;
         onLoad();
@@ -859,9 +866,6 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
     }
 
     private void setPhoto() {
-        // Intent intent = new Intent(this, FileList.class);
-        // intent.putExtra("Type", FileList.TYPE_IMAGE);
-        // startActivityForResult(intent, 0);
         IntentUtils.getLocalImage(this,
                 RequestCode.REQUEST_GET_LOCAL_IMAGE_FOR_VCARD);
     }
@@ -894,26 +898,18 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
     @Override
     public void onStop() {
         super.onStop();
-
         Logger.d("onStop");
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         Logger.d("onDestroy");
-
         if (scene != SCENE_LOGIN)
             Xmpp.stopXmpp();
-
         Xmpp.unregisterReceiver();
-
         Xmpp.releaseXmpp();
-
         XmppNotification.close();
-
         instance = null;
     }
 
@@ -982,20 +978,14 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
                 onLogin();
         } else if (name
                 .equals(Xmpp.broadcast_action[Xmpp.ON_GET_FRIENDS_LIST_ID])) {
-            // String data = intent.getStringExtra("data");
             if (instance != null)
                 onGetFriendsList(data);
         } else if (name
                 .equals(Xmpp.broadcast_action[Xmpp.ON_GET_FRIENDS_STATUS_ID])) {
-            // String data = intent.getStringExtra("data");
             if (instance != null)
                 onGetFriendsStatus(data);
         }
         if (name.equals(Xmpp.broadcast_action[Xmpp.ON_RECEIVE_MESSAGE_ID])) {
-            // String data = intent.getStringExtra("data");
-
-            Log.v("receiveMessage", data);
-
             String chat_object_jid = MyString.getJidFromMessage(data);
 
             String chat_object_name = MyString.getNameFromJid(chat_object_jid);
@@ -1132,7 +1122,6 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
                 }
 
             } catch (JSONException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -1168,7 +1157,7 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
                             }).create().show();
         } else if (name
                 .equals(Xmpp.broadcast_action[Xmpp.ON_ADD_FRIEND_RESPOND_AGREE_ID])) {
-            final String add_friend_jid = data;// intent.getStringExtra("data");
+            final String add_friend_jid = data;
 
             new CustomDialog.Builder(XmppUI.this)
                     .setTitle("请求")
@@ -1239,14 +1228,14 @@ public class XmppUI extends LoadAcitivity implements OnHandleMessageListener {
 
         } else if (name
                 .equals(Xmpp.broadcast_action[Xmpp.ON_SET_VCARD_SUCCESSFUL_ID])) {
-            Toast.makeText(this, "已设置个人信息。", Toast.LENGTH_LONG).show();
+            ToastMaster.showToast(this, "已设置个人信息");
             Xmpp.getVCard(null);
         } else if (name.equals(Xmpp.broadcast_action[Xmpp.ON_AUTH_ERROR_ID])) {
             if (instance != null) {
                 if (scene == LoadAcitivity.SCENE_WAIT) {
                     onInit();
                     auto_login = false;
-                    Toast.makeText(this, "用户或密码不正确！", Toast.LENGTH_LONG).show();
+                    ToastMaster.showToast(this, "用户或密码不正确!");
                 }
             }
         } else if (name

@@ -37,6 +37,7 @@ import com.snailstdio.software.xsdk.utils.IntentUtils;
 import com.snailstdio.software.xsdk.utils.ScreenInfo;
 import com.snailstdio.software.xsdk.view.CustomEditText;
 import com.snailstdio.software.xsdk.view.PopMenu;
+import com.snailstdio.software.xsdk.view.ToastMaster;
 import com.snailstdio.software.xsdk.view.PopMenu.OnPopMenuItemClickListener;
 import com.xuqiqiang.xmpp.R;
 import com.xuqiqiang.xmpp.Xmpp;
@@ -247,8 +248,8 @@ public class ChatActivity extends LoadAcitivity {
         tv.setTextSize(20);
         tv.setPadding((int) DisplayUtils.dip2px(this, 9),
                 (int) DisplayUtils.dip2px(this, 5),
-                (int) DisplayUtils.dip2px(this, 5),
-                (int) DisplayUtils.dip2px(this, 9));
+                (int) DisplayUtils.dip2px(this, 9),
+                (int) DisplayUtils.dip2px(this, 5));
 
         int pos = Gravity.RIGHT;
         if (isSelf)
@@ -288,8 +289,8 @@ public class ChatActivity extends LoadAcitivity {
         tv.setTextSize(20);
         tv.setPadding((int) DisplayUtils.dip2px(this, 9),
                 (int) DisplayUtils.dip2px(this, 5),
-                (int) DisplayUtils.dip2px(this, 5),
-                (int) DisplayUtils.dip2px(this, 9));
+                (int) DisplayUtils.dip2px(this, 9),
+                (int) DisplayUtils.dip2px(this, 5));
         int pos = Gravity.RIGHT;
         if (isSelf)
             pos = Gravity.LEFT;
@@ -310,20 +311,22 @@ public class ChatActivity extends LoadAcitivity {
         Bitmap b = BitmapUtils.getNewBitmap(bitmap, ScreenInfo.getInstance()
                 .getWidthPixels() / 2);
 
-        iv.setBackgroundDrawable(new BitmapDrawable(b));
+        iv.setImageBitmap(b);
 
         LinearLayout layout_iv = new LinearLayout(this);
         layout_iv.setGravity(pos);
 
         layout_iv.setPadding((int) DisplayUtils.dip2px(this, 9),
                 (int) DisplayUtils.dip2px(this, 5),
-                (int) DisplayUtils.dip2px(this, 5),
-                (int) DisplayUtils.dip2px(this, 9));
+                (int) DisplayUtils.dip2px(this, 9),
+                (int) DisplayUtils.dip2px(this, 5));
         layout_iv.addView(iv,
-                new LinearLayout.LayoutParams(b.getWidth(), b.getHeight()));
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
 
         layout.addView(layout_iv, new LinearLayout.LayoutParams(
-                LayoutParams.MATCH_PARENT, b.getHeight()));
+                LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
     }
 
     public void addBitmap(String sender_name, String id, String file_name,
@@ -354,8 +357,7 @@ public class ChatActivity extends LoadAcitivity {
         Logger.d("id:" + id);
 
         if (TextUtils.isEmpty(id)) {
-            Toast.makeText(ChatActivity.this, "连接已断开", Toast.LENGTH_LONG)
-                    .show();
+            ToastMaster.showToast(ChatActivity.this, "连接已断开");
             return;
         }
 
@@ -441,8 +443,7 @@ public class ChatActivity extends LoadAcitivity {
                  * Log.v("发送时间平均时间", aver_time/timer+""); }
                  */
 
-                Toast.makeText(ChatActivity.this, "已送达！", Toast.LENGTH_LONG)
-                        .show();
+                ToastMaster.showToast(ChatActivity.this, "已送达！");
                 data.remove(d);
                 receiveMessage = true;
                 break;
@@ -492,8 +493,6 @@ public class ChatActivity extends LoadAcitivity {
 
     private void clearCache() {
 
-        // EditText chat_content=(EditText)(findViewById(R.id.chat_content));
-        // chat_content.setText("");
         layout.removeAllViews();
         FileUtils.deleteCache(
                 this,
