@@ -137,10 +137,8 @@ xmpp_conn_t *xmpp_conn_new(xmpp_ctx_t * const ctx)
 	/* give the caller a reference to connection */
 	conn->ref = 1;
 
-
-	conn->isRegister = 0;
-	//conn->on_get_register_result=NULL;
-	conn->register_result = XMPP_REGISTER_NETWORK_CUT_DOWN;
+    conn->isRegister = 0;
+    conn->register_result = XMPP_REGISTER_NETWORK_CUT_DOWN;
 
 	/* add connection to ctx->connlist */
 	tail = conn->ctx->connlist;
@@ -165,182 +163,146 @@ xmpp_conn_t *xmpp_conn_new(xmpp_ctx_t * const ctx)
     return conn;
 }
 
-/*void set_on_get_register_result(xmpp_conn_t * const conn, void *on_register){
-	conn->on_get_register_result = on_register;
-}*/
-
+/* Add register module by xuqiqiang 2014/12/5 */
 void xmpp_set_register(xmpp_conn_t * const conn){
-	conn->isRegister = 1;
+    conn->isRegister = 1;
 }
-
 
 int on_register_user_handler(xmpp_conn_t * const conn,
-	xmpp_stanza_t * const stanza,
-	void * const userdata){
-	
-	char *type = xmpp_stanza_get_attribute(stanza, "type");
+    xmpp_stanza_t * const stanza,
+    void * const userdata){
 
-	if (type != NULL && strcmp(type, "result") == 0){
-		fprintf(stderr, "register successful!\n");
-		conn->register_result = XMPP_REGISTER_SUCCESSFUL;
-		//if(conn->on_get_register_result !=NULL)
-		//	conn->on_get_register_result(XMPP_REGISTER_SUCCESSFUL);
-	}
-	else{
-		fprintf(stderr, "register not successful!\n");
-		conn->register_result = XMPP_REGISTER_NOT_SUCCESSFUL;
-		//if(conn->on_get_register_result !=NULL)
-		//	conn->on_get_register_result(XMPP_REGISTER_NOT_SUCCESSFUL);
-	}
+    char *type = xmpp_stanza_get_attribute(stanza, "type");
 
-	
+    if (type != NULL && strcmp(type, "result") == 0){
+        fprintf(stderr, "register successful!\n");
+        conn->register_result = XMPP_REGISTER_SUCCESSFUL;
+    }
+    else{
+        fprintf(stderr, "register not successful!\n");
+        conn->register_result = XMPP_REGISTER_NOT_SUCCESSFUL;
+    }
 
-	xmpp_disconnect(conn);
+    xmpp_disconnect(conn);
 
-	return 1;
+    return 1;
 }
-
-
 
 void xmpp_register_user(xmpp_conn_t * const conn){
 
-	handler_add(conn, on_register_user_handler,
-		    NULL, "iq", NULL, NULL);
+    handler_add(conn, on_register_user_handler,
+            NULL, "iq", NULL, NULL);
 
-	//fprintf(stderr, "conn->jid:%s\n",conn->jid);
+    char name[100];
 
-	char name[100];
+    int i;
 
-	int i;
+    for (i = 0; conn->jid[i] != '\0'; i++){
+        if (conn->jid[i] == '@')
+            break;
+    }
 
-	for (i = 0; conn->jid[i] != '\0'; i++){
-		if (conn->jid[i] == '@')
-			break;
-	}
+    strncpy(name, conn->jid, i);
+    name[i] = '\0';
 
-	strncpy(name, conn->jid, i);
-	name[i] = '\0';
-
-//fprintf(stderr, "name:%s\n",name);
-//fprintf(stderr, "jid:%s\n",xmpp_conn_get_bound_jid(conn));
-//fprintf(stderr, "pass:%s\n",xmpp_conn_get_pass(conn));
-
-	//xmpp_send_raw_string(conn, "<iq id=\"RbEdY-0\" to=\"tt.com\" type=\"get\"><query xmlns=\"jabber:iq:register\"></query></iq>");
-	xmpp_send_raw_string(conn, "<iq id=\"RbEdY-1\" type=\"set\"><query xmlns=\"jabber:iq:register\"><username>%s</username><email></email><password>%s</password></query></iq>",name,xmpp_conn_get_pass(conn));
+    xmpp_send_raw_string(conn, "<iq id=\"RbEdY-1\" type=\"set\"><query xmlns=\"jabber:iq:register\"><username>%s</username><email></email><password>%s</password></query></iq>",name,xmpp_conn_get_pass(conn));
 }
-
-
-
-
 
 /*define a handler for connection events*/
 void thread_xmpp_register_handler(xmpp_conn_t* const conn, const xmpp_conn_event_t status,
-	const int error, xmpp_stream_error_t* const stream_error,
-	void* const userdata) {
-	xmpp_ctx_t *ctx = xmpp_conn_get_context(conn);
-	
-	if (status != XMPP_CONN_CONNECT) {
+    const int error, xmpp_stream_error_t* const stream_error,
+    void* const userdata) {
+    xmpp_ctx_t *ctx = xmpp_conn_get_context(conn);
 
-		fprintf(stderr, "DEBUG:disconnect\n");
+    if (status != XMPP_CONN_CONNECT) {
 
-		xmpp_stop(ctx);
-	}
+        fprintf(stderr, "DEBUG:disconnect\n");
+
+        xmpp_stop(ctx);
+    }
 }
 
+void* thread_xmpp_register(void* param) {
+    xmpp_register_t *reg = (xmpp_register_t *)param;
 
+    xmpp_ctx_t *ctx;
+    xmpp_conn_t *conn;
+    xmpp_log_t *log;
 
-void* thread_xmpp_register(void* param){
-	xmpp_register_t *reg = (xmpp_register_t *)param;
+    /*initalize library*/
+    xmpp_initialize();
 
+    /*create a context*/
+    log = xmpp_get_default_logger(XMPP_LEVEL_DEBUG);
+    ctx = xmpp_ctx_new(NULL, log);
 
-		xmpp_ctx_t *ctx;
-		xmpp_conn_t *conn;
-		xmpp_log_t *log;
+    /* create a connection*/
+    conn = xmpp_conn_new(ctx);
 
+    /* setup authentication information*/
+    xmpp_conn_set_jid(conn, reg->jid);
+    xmpp_conn_set_pass(conn, reg->pass);
 
-		/*initalize library*/
-		xmpp_initialize();
+    /* initialize connection*/
+    char *strServerIP;
+    if (reg->serverIP == NULL || strlen(reg->serverIP) == 0){
+        strServerIP = NULL;
+    }
+    else
+        strServerIP = reg->serverIP;
 
-		/*create a context*/
-		log = xmpp_get_default_logger(XMPP_LEVEL_DEBUG);
-		ctx = xmpp_ctx_new(NULL, log);
+    xmpp_set_register(conn);
 
-		/* create a connection*/
-		conn = xmpp_conn_new(ctx);
+    xmpp_connect_client(conn, strServerIP, reg->serverAltport, thread_xmpp_register_handler, NULL);
 
-		/* setup authentication information*/
-		xmpp_conn_set_jid(conn, reg->jid);
-		xmpp_conn_set_pass(conn, reg->pass);
+    /* enter the event loop - our connect handler will trigger an exit*/
+    xmpp_run(ctx);
 
-		/* initialize connection*/
-		char *strServerIP;
-		if (reg->serverIP == NULL || strlen(reg->serverIP) == 0){
-			strServerIP = NULL;
-		}
-		else
-			strServerIP = reg->serverIP;
+    if(reg->on_get_register_result != NULL)
+    reg->on_get_register_result(conn->register_result);
 
+    /*release our connection and contex*/
+    xmpp_conn_release(conn);
+    xmpp_ctx_free(ctx);
 
-		xmpp_set_register(conn);
-		//set_on_get_register_result(conn, reg->on_get_register_result);
+    /*final shutdown of the libraty*/
+    xmpp_shutdown();
 
-		//xmpp_connect_client(conn, strServXmpp, 0, conn_handler, msg);
-		xmpp_connect_client(conn, strServerIP, reg->serverAltport, thread_xmpp_register_handler, NULL);
+    free(reg->jid);
+    free(reg->pass);
+    free(reg->serverIP);
+    free(reg);
 
-		/* enter the event loop - our connect handler will trigger an exit*/
-		xmpp_run(ctx);
-
-
-		if(reg->on_get_register_result != NULL)
-		reg->on_get_register_result(conn->register_result);
-
-		/*release our connection and contex*/
-		xmpp_conn_release(conn);
-		xmpp_ctx_free(ctx);
-
-		/*final shutdown of the libraty*/
-		xmpp_shutdown();
-
-		
-		free(reg->jid);
-		free(reg->pass);
-		free(reg->serverIP);
-		free(reg);
-
-	return (void*)0;
+    return (void*)0;
 }
-
-
-//void xmpp_register_init(xmpp_register_t *reg, const char *jid, const char *pass, const char *serverIP, int serverAltport){
-//}
 
 void xmpp_register(const char *jid, const char *pass, const char *serverIP, int serverAltport, void * on_register){
 
-	xmpp_register_t *reg = (xmpp_register_t *)malloc(sizeof(xmpp_register_t));
+    xmpp_register_t *reg = (xmpp_register_t *)malloc(sizeof(xmpp_register_t));
 
-	reg->jid = (char *)malloc(sizeof(char) * (strlen(jid) + 1));
-	strcpy(reg->jid, jid);
-	reg->pass = (char *)malloc(sizeof(char) * (strlen(pass) + 1));
-	strcpy(reg->pass, pass);
-	reg->serverIP = (char *)malloc(sizeof(char) * (strlen(serverIP) + 1));
-	strcpy(reg->serverIP, serverIP);
+    reg->jid = (char *) malloc(sizeof(char) * (strlen(jid) + 1));
+    strcpy(reg->jid, jid);
+    reg->pass = (char *) malloc(sizeof(char) * (strlen(pass) + 1));
+    strcpy(reg->pass, pass);
+    reg->serverIP = (char *) malloc(sizeof(char) * (strlen(serverIP) + 1));
+    strcpy(reg->serverIP, serverIP);
 
+    reg->serverAltport = serverAltport;
+    reg->on_get_register_result = on_register;
 
-	//reg->jid=jid;
-	//reg->pass=pass;
-	//reg->serverIP=serverIP;
-	reg->serverAltport=serverAltport;
-	reg->on_get_register_result=on_register;
+    pthread_t thread_xmpp_register_id;
 
-	pthread_t thread_xmpp_register_id;
+    pthread_attr_t thread_xmpp_register_attr; //线程属性
+    pthread_attr_init(&thread_xmpp_register_attr);  //初始化线程属性
+    pthread_attr_setdetachstate(&thread_xmpp_register_attr, PTHREAD_CREATE_DETACHED);      //设置线程属性
 
-	pthread_attr_t thread_xmpp_register_attr; //线程属性
-	pthread_attr_init(&thread_xmpp_register_attr);  //初始化线程属性
-	pthread_attr_setdetachstate(&thread_xmpp_register_attr, PTHREAD_CREATE_DETACHED);      //设置线程属性
+    if (pthread_create(&thread_xmpp_register_id, &thread_xmpp_register_attr, (void *) thread_xmpp_register, reg) != 0){
+        fprintf(stderr, "Create thread_xmpp_register error!\n");
+    }
+}
 
-	if (pthread_create(&thread_xmpp_register_id, &thread_xmpp_register_attr, (void *)thread_xmpp_register, reg) != 0){
-		fprintf(stderr, "Create thread_xmpp_register error!\n");
-	}
+int get_conn_error(xmpp_conn_t * const conn){
+    return conn->error;
 }
 
 /** Clone a Strophe connection object.
@@ -658,9 +620,9 @@ void conn_disconnect(xmpp_conn_t * const conn)
     sock_close(conn->sock);
 
     /* fire off connection handler */
-	if(conn->conn_handler!=NULL)
-    conn->conn_handler(conn, XMPP_CONN_DISCONNECT, conn->error,
-		       conn->stream_error, conn->userdata);
+    if(conn->conn_handler != NULL)
+        conn->conn_handler(conn, XMPP_CONN_DISCONNECT, conn->error,
+		           conn->stream_error, conn->userdata);
 }
 
 /* prepares a parser reset.  this is called from handlers. we can't

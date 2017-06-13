@@ -550,8 +550,7 @@ static void _auth(xmpp_conn_t * const conn)
 	    return;
 	}
 	str = sasl_plain(conn->ctx, authid, conn->pass);
-
-free(authid);
+    free(authid); // Fix memory leak by xuqiqiang 2014/12/9
 	if (!str) {
 	    disconnect_mem_error(conn);
 	    return;
@@ -660,15 +659,13 @@ free(authid);
 	    xmpp_stanza_release(iq);
 	    xmpp_error(conn->ctx, "auth", 
 		       "Cannot authenticate without resource");
-	    //xmpp_disconnect(conn);
-		if(conn->isRegister==0){
-			//printf("ENXIO:%d\n",ENXIO);
-			conn->error = ENXIO;
-			conn_disconnect(conn);
-			//xmpp_disconnect(conn);
-		}
-		else
-			xmpp_register_user(conn);
+        /* Add register module by xuqiqiang 2014/12/5 */
+        if(!conn->isRegister){
+            conn->error = ENXIO;
+            conn_disconnect(conn);
+        }
+        else
+            xmpp_register_user(conn);
 	    return;
 	}
 	xmpp_stanza_add_child(child, authdata);
@@ -897,15 +894,14 @@ static int _handle_bind(xmpp_conn_t * const conn,
 	    conn->authenticated = 1;
 	   
 	    /* call connection handler */
-
-		if(conn->isRegister==0)
-	    		conn->conn_handler(conn, XMPP_CONN_CONNECT, 0, NULL, 
-			       conn->userdata);
-		else{
-			//conn->on_get_register_result(XMPP_REGISTER_ALREADY_EXIST);
-			conn->register_result = XMPP_REGISTER_ALREADY_EXIST;
-			xmpp_disconnect(conn);
-		}
+        /* Add register module by xuqiqiang 2014/12/5 */
+        if(!conn->isRegister)
+            conn->conn_handler(conn, XMPP_CONN_CONNECT, 0, NULL,
+                conn->userdata);
+        else{
+            conn->register_result = XMPP_REGISTER_ALREADY_EXIST;
+            xmpp_disconnect(conn);
+        }
 	}
     } else {
 	xmpp_error(conn->ctx, "xmpp", "Server sent malformed bind reply.");
@@ -943,14 +939,13 @@ static int _handle_session(xmpp_conn_t * const conn,
 	conn->authenticated = 1;
 	
 	/* call connection handler */
-	//conn->conn_handler(conn, XMPP_CONN_CONNECT, 0, NULL, conn->userdata);
-		if(conn->isRegister==0)
-	    		conn->conn_handler(conn, XMPP_CONN_CONNECT, 0, NULL, conn->userdata);
-		else{
-			//conn->on_get_register_result(XMPP_REGISTER_ALREADY_EXIST);
-			conn->register_result = XMPP_REGISTER_ALREADY_EXIST;
-			xmpp_disconnect(conn);
-		}
+        /* Add register module by xuqiqiang 2014/12/5 */
+        if(!conn->isRegister)
+            conn->conn_handler(conn, XMPP_CONN_CONNECT, 0, NULL, conn->userdata);
+        else{
+            conn->register_result = XMPP_REGISTER_ALREADY_EXIST;
+            xmpp_disconnect(conn);
+        }
     } else {
 	xmpp_error(conn->ctx, "xmpp", "Server sent malformed session reply.");
 	xmpp_disconnect(conn);
@@ -992,16 +987,13 @@ static int _handle_legacy(xmpp_conn_t * const conn,
 	xmpp_debug(conn->ctx, "xmpp", "Legacy auth succeeded.");
 
 	conn->authenticated = 1;
-	//conn->conn_handler(conn, XMPP_CONN_CONNECT, 0, NULL, conn->userdata);
-
-		if(conn->isRegister==0)
-	    		conn->conn_handler(conn, XMPP_CONN_CONNECT, 0, NULL, conn->userdata);
-		else{
-			//conn->on_get_register_result(XMPP_REGISTER_ALREADY_EXIST);
-			conn->register_result = XMPP_REGISTER_ALREADY_EXIST;
-			xmpp_disconnect(conn);
-		}
-
+        /* Add register module by xuqiqiang 2014/12/5 */
+        if(!conn->isRegister)
+            conn->conn_handler(conn, XMPP_CONN_CONNECT, 0, NULL, conn->userdata);
+        else{
+            conn->register_result = XMPP_REGISTER_ALREADY_EXIST;
+            xmpp_disconnect(conn);
+        }
     } else {
 	xmpp_error(conn->ctx, "xmpp", "Server sent us a legacy authentication "\
 		   "response with a bad type.");

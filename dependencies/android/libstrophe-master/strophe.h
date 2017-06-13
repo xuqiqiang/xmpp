@@ -367,6 +367,7 @@ void xmpp_run_once(xmpp_ctx_t *ctx, const unsigned long  timeout);
 void xmpp_run(xmpp_ctx_t *ctx);
 void xmpp_stop(xmpp_ctx_t *ctx);
 
+/* Add register module by xuqiqiang 2014/12/5 */
 typedef struct {
     char *jid;
     char *pass;
@@ -375,14 +376,11 @@ typedef struct {
     void (*on_get_register_result)(int result);
 } xmpp_register_t;
 
-//void xmpp_register_init(xmpp_register_t *reg, const char *jid, const char *pass, const char *serverIP, int serverAltport);
-
 void xmpp_register(const char *jid, const char *pass, const char *serverIP, int serverAltport, void * on_register);
 
 void xmpp_set_register(xmpp_conn_t * const conn);
 
 void xmpp_register_user(xmpp_conn_t * const conn);
-
 
 typedef enum {
     XMPP_REGISTER_SUCCESSFUL,
@@ -391,10 +389,7 @@ typedef enum {
     XMPP_REGISTER_NETWORK_CUT_DOWN
 } xmpp_register_result;
 
-
 int get_conn_error(xmpp_conn_t * const conn);
-
-//void set_on_get_register_result(xmpp_conn_t * const conn, void * on_register);
 
 #ifdef __cplusplus
 }

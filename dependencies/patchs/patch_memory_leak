@@ -1,0 +1,12 @@
+diff --git a/src/auth.c b/src/auth.c
+index 2371925..8bf26c6 100644
+--- a/src/auth.c
++++ b/src/auth.c
+@@ -550,6 +550,7 @@ static void _auth(xmpp_conn_t * const conn)
+ 	    return;
+ 	}
+ 	str = sasl_plain(conn->ctx, authid, conn->pass);
++    free(authid); // Fix memory leak by xuqiqiang 2014/12/9
+ 	if (!str) {
+ 	    disconnect_mem_error(conn);
+ 	    return;

@@ -56,7 +56,7 @@ char *sasl_plain(xmpp_ctx_t *ctx, const char *authid, const char *password) {
 	memcpy(msg+1, authid, idlen);
 	msg[1+idlen] = '\0';
 	memcpy(msg+1+idlen+1, password, passlen);
-	result = base64_encode(ctx, (unsigned char *)msg, 2 + idlen + passlen);
+	result = base64_encode_1(ctx, (unsigned char *)msg, 2 + idlen + passlen);
 	xmpp_free(ctx, msg);
     }
 
@@ -354,7 +354,7 @@ char *sasl_digest_md5(xmpp_ctx_t *ctx, const char *challenge,
     hash_release(table); /* also frees value strings */
 
     /* reuse response for the base64 encode of our result */
-    response = base64_encode(ctx, (unsigned char *)result, strlen(result));
+    response = base64_encode_1(ctx, (unsigned char *)result, strlen(result));
     xmpp_free(ctx, result);
 
     return response;
@@ -404,7 +404,7 @@ int base64_encoded_len(xmpp_ctx_t *ctx, const unsigned len)
     return ((len + 2)/3) << 2;
 }
 
-char *base64_encode(xmpp_ctx_t *ctx, 
+char *base64_encode_1(xmpp_ctx_t *ctx, 
 		    const unsigned char * const buffer, const unsigned len)
 {
     int clen;

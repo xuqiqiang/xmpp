@@ -206,10 +206,8 @@ struct _xmpp_conn_t {
 
     int isRegister;
 
-	int register_result;
+    int register_result;
 
-	//void (*on_get_register_result)(int result);
-    
     /* connection events handler */
     xmpp_conn_handler conn_handler;
     void *userdata;
